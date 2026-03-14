@@ -1,0 +1,153 @@
+/* -------------------------------------------
+   Models Page Styles
+   ------------------------------------------- */
+.models-page {
+    overflow-y: auto;
+    padding-top: 100px;
+    background-color: #050505;
+    background-image: radial-gradient(circle at 50% 0%, rgba(30, 30, 35, 0.4) 0%, transparent 60%);
+}
+
+.models-page .navbar {
+    background: rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.models-page .nav-links li a.active {
+    color: #fff;
+}
+
+.models-page .nav-links li a.active::after {
+    width: 100%;
+}
+
+.page-header {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.page-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: #fff;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    animation: fade-up 1s ease-out;
+}
+
+.page-subtitle {
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    animation: fade-up 1s 0.3s backwards ease-out;
+}
+
+/* Models Grid Layout */
+.models-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    padding: 40px 8%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.model-card {
+    background: rgba(20, 20, 22, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    animation: fade-up 1s 0.6s backwards ease-out;
+}
+
+.model-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.model-image-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    /* Gradient overlay to seamlessly blend the bottom of images into the dark background */
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+.model-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.5s ease;
+    filter: brightness(0.8) contrast(1.1);
+}
+
+.model-card:hover .model-img {
+    transform: scale(1.05);
+    filter: brightness(1) contrast(1.1);
+}
+
+.model-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, transparent 40%, rgba(0, 0, 0, 0.8) 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.model-card:hover .model-overlay {
+    opacity: 1;
+}
+
+.model-spec {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #e6dfc8;
+    text-transform: uppercase;
+}
+
+.model-info {
+    padding: 30px;
+    text-align: center;
+}
+
+.model-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.model-desc {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Base Footer */
+.site-footer {
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 50px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}

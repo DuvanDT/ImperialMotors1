@@ -1,0 +1,630 @@
+/* --- Core Resets & Fonts --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #000;
+    background-image: url('fondo negro elegante.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    color: #e6dfc8;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* -------------------------------------------
+   Navigation Bar (Elegant Glassmorphism)
+   ------------------------------------------- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+    z-index: 100;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+.nav-img {
+    height: 40px;
+    /* Adjusted for better visibility */
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.nav-img:hover {
+    transform: scale(1.05);
+}
+
+.nav-video-logo {
+    display: none;
+    /* Hide the video logo as we swapped back to image */
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links li a {
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #fceea7;
+    transition: width 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: #fff;
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+.btn-nav {
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    padding: 10px 20px;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-nav:hover {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.8);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+}
+
+/* -------------------------------------------
+   Hero Section Layout
+   ------------------------------------------- */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #020202;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+/* Video Background and Blending Layer */
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    transform: translateX(-50%) translateY(-50%);
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* Sharp high-contrast vignette: center is 100% clear, edges pull to deep black */
+    background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+/* Removed Background Lighting and Fog layers entirely as they were causing the milky/hazy effect */
+.background-lighting,
+.fog {
+    display: none;
+}
+
+/* Floor reflection overlay */
+.floor-reflection {
+    position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 120%;
+    height: 50%;
+    z-index: 3;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    background-size: 100% 200%;
+    transform: rotateX(85deg);
+    transform-origin: bottom;
+    pointer-events: none;
+}
+
+/* -------------------------------------------
+   Interactive Canvas
+   ------------------------------------------- */
+#particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    mix-blend-mode: screen;
+    /* Blend particles with video highlights */
+}
+
+/* -------------------------------------------
+   Hero Content & Centerpiece
+   ------------------------------------------- */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 5vh;
+}
+
+/* Removed logo and sweep styles as requested by user */
+
+.brand-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(3rem, 6vw, 6rem);
+    color: #fff;
+    /* Pure white for high contrast */
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    text-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    animation: fade-up 2s 1.5s forwards ease-out;
+}
+
+.brand-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 1.8vw, 1.4rem);
+    font-style: italic;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: capitalize;
+    margin-top: 10px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fade-up 2s 2s forwards ease-out;
+}
+
+/* -------------------------------------------
+   Interactive Call to Action Buttons
+   ------------------------------------------- */
+.cta-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 50px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fade-up 2s 2.5s forwards ease-out;
+}
+
+.btn {
+    padding: 15px 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.btn-primary {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 215, 0, 0.6);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:hover {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 1);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* -------------------------------------------
+   Scroll Down Indicator
+   ------------------------------------------- */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    animation: fade-in 2s 4s forwards ease-out;
+}
+
+.scroll-indicator span {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.scroll-line {
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: #e6dfc8;
+    animation: scroll-drop 2s infinite ease-in-out;
+}
+
+/* -------------------------------------------
+   Animations 
+   ------------------------------------------- */
+@keyframes slow-pan-light {
+    0% {
+        transform: scale(1.1) translate(2%, 2%);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1) translate(-2%, -2%);
+        opacity: 1;
+    }
+}
+
+@keyframes drift-fog-1 {
+    0% {
+        transform: translate(-10%, 10%) scale(1);
+    }
+
+    100% {
+        transform: translate(10%, -5%) scale(1.2);
+    }
+}
+
+@keyframes drift-fog-2 {
+    0% {
+        transform: translate(5%, -10%) scale(1.1);
+    }
+
+    100% {
+        transform: translate(-15%, 5%) scale(0.9);
+    }
+}
+
+@keyframes scale-up-reveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes focus-in {
+    0% {
+        filter: blur(10px);
+    }
+
+    100% {
+        filter: blur(0px);
+    }
+}
+
+@keyframes fade-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes scroll-drop {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(200%);
+    }
+}
+
+/* Luxury Section Background (Clean Models-Style) */
+.luxury-bg {
+    background-color: #050505 !important;
+    background-image: radial-gradient(circle at 50% 0%, rgba(30, 30, 35, 0.4) 0%, transparent 60%) !important;
+    position: relative;
+    z-index: 1;
+}
+
+.luxury-bg::before {
+    display: none;
+}
+
+.luxury-bg>* {
+    position: relative;
+    z-index: 1;
+}
+
+/* -------------------------------------------
+   Bespoke & Heritage Sections (Continuity)
+   ------------------------------------------- */
+.about-section {
+    padding: 120px 5%;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.editorial-container {
+    width: 100%;
+    max-width: 900px;
+    background: rgba(5, 5, 8, 0.8);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    padding: 80px 60px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 3px solid rgba(255, 255, 255, 0.4);
+    /* Striking Silver Border */
+    border-radius: 2px;
+    text-align: center;
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.editorial-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transition: 0.5s;
+}
+
+.editorial-container:hover::after {
+    left: 100%;
+    transition: 0.8s;
+}
+
+.editorial-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    color: #fff;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+.editorial-subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 40px;
+}
+
+.editorial-text {
+    font-size: 1.1rem;
+    line-height: 2;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 30px;
+    text-align: justify;
+}
+
+.quote {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    color: #e6dfc8;
+    border-left: 4px solid #fff;
+    padding-left: 20px;
+    margin: 50px 0;
+    line-height: 1.4;
+}
+
+.btn-discover {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 40px;
+    background: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
+    text-align: center;
+}
+
+.btn-discover:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* -------------------------------------------
+   Mobile Responsiveness
+   ------------------------------------------- */
+@media (max-width: 900px) {
+    .nav-links {
+        display: none;
+    }
+
+    .brand-logo {
+        max-width: 200px;
+    }
+
+    .cta-container {
+        flex-direction: column;
+        width: 80%;
+    }
+
+    .btn {
+        text-align: center;
+    }
+}
+
+/* -------------------------------------------
+   Contact Info Strip (Impactful Footer)
+   ------------------------------------------- */
+.contact-info-section {
+    padding: 100px 5%;
+    background-color: #000;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    position: relative;
+}
+
+.contact-info-grid {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.info-item h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.info-item p {
+    font-size: 1.1rem;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.site-footer {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #000;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Limit bottom scroll */
+html,
+body {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
