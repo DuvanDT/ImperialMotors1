@@ -1,0 +1,259 @@
+/* --- Core Resets & Fonts --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #000;
+    background-image: url("/images/fondo negro elegante.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    color: #e6dfc8;
+    font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* -------------------------------------------
+   Luxury Section Background
+   ------------------------------------------- */
+.luxury-bg {
+    background-color: #050505 !important;
+    background-image: radial-gradient(circle at 50% 0%, rgba(30, 30, 35, 0.4) 0%, transparent 60%) !important;
+    position: relative;
+    z-index: 1;
+}
+
+.luxury-bg::before {
+    display: none;
+}
+
+.luxury-bg > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* -------------------------------------------
+   Bespoke & Heritage Sections (Editorial)
+   ------------------------------------------- */
+.about-section {
+    padding: 120px 5%;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.editorial-container {
+    width: 100%;
+    max-width: 900px;
+    background: rgba(5, 5, 8, 0.8);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    padding: 80px 60px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 3px solid rgba(255, 255, 255, 0.4);
+    border-radius: 2px;
+    text-align: center;
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.editorial-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transition: 0.5s;
+}
+
+.editorial-container:hover::after {
+    left: 100%;
+    transition: 0.8s;
+}
+
+.editorial-title {
+    font-family: var(--font-cinzel), 'Cinzel', serif;
+    font-size: 2.5rem;
+    color: #fff;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+.editorial-subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 40px;
+}
+
+.editorial-text {
+    font-size: 1.1rem;
+    line-height: 2;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 30px;
+    text-align: justify;
+}
+
+.quote {
+    font-family: var(--font-cinzel), 'Cinzel', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    color: #e6dfc8;
+    border-left: 4px solid #fff;
+    padding-left: 20px;
+    margin: 50px 0;
+    line-height: 1.4;
+}
+
+.btn-discover {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 40px;
+    background: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
+    text-align: center;
+}
+
+.btn-discover:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* -------------------------------------------
+   Contact Info Strip
+   ------------------------------------------- */
+.contact-info-section {
+    padding: 100px 5%;
+    background-color: #000;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    position: relative;
+}
+
+.contact-info-grid {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.info-item h3 {
+    font-family: var(--font-cinzel), 'Cinzel', serif;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.info-item p {
+    font-size: 1.1rem;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+/* -------------------------------------------
+   Animations
+   ------------------------------------------- */
+@keyframes fade-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes scroll-drop {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(200%);
+    }
+}
+
+@keyframes scale-up-reveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes focus-in {
+    0% {
+        filter: blur(10px);
+    }
+    100% {
+        filter: blur(0px);
+    }
+}
+
+/* -------------------------------------------
+   Mobile Responsiveness
+   ------------------------------------------- */
+@media (max-width: 900px) {
+    .editorial-container {
+        padding: 50px 30px;
+    }
+
+    .editorial-title {
+        font-size: 1.8rem;
+    }
+
+    .quote {
+        font-size: 1.3rem;
+    }
+
+    .contact-info-grid {
+        gap: 40px;
+    }
+}
+
+/* Limit bottom scroll */
+html,
+body {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
