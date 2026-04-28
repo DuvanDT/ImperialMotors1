@@ -1,0 +1,44 @@
+/* -------------------------------------------
+   Models Page Styles
+   ------------------------------------------- */
+.modelsPage {
+    overflow-y: auto;
+    padding-top: 100px;
+    background-color: #050505;
+    background-image: radial-gradient(circle at 50% 0%, rgba(30, 30, 35, 0.4) 0%, transparent 60%);
+    min-height: 100vh;
+}
+
+.pageHeader {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.pageTitle {
+    font-family: var(--font-cinzel), 'Cinzel', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: #fff;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    animation: fade-up 1s ease-out;
+}
+
+.pageSubtitle {
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    animation: fade-up 1s 0.3s backwards ease-out;
+}
+
+/* Models Grid Layout */
+.modelsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    padding: 40px 8%;
+    max-width: 1600px;
+    margin: 0 auto;
+}

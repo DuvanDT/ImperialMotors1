@@ -1,0 +1,200 @@
+/* -------------------------------------------
+   Hero Section Layout
+   ------------------------------------------- */
+.heroSection {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #020202;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+/* Video Background */
+.heroVideo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    transform: translateX(-50%) translateY(-50%);
+    object-fit: cover;
+}
+
+.videoOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.floorReflection {
+    position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 120%;
+    height: 50%;
+    z-index: 3;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    background-size: 100% 200%;
+    transform: rotateX(85deg);
+    transform-origin: bottom;
+    pointer-events: none;
+}
+
+/* -------------------------------------------
+   Interactive Canvas
+   ------------------------------------------- */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    mix-blend-mode: screen;
+}
+
+/* -------------------------------------------
+   Hero Content & CTAs
+   ------------------------------------------- */
+.heroContent {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 5vh;
+}
+
+.ctaContainer {
+    display: flex;
+    gap: 20px;
+    margin-top: 50px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fade-up 2s 2.5s forwards ease-out;
+}
+
+.btn {
+    padding: 15px 40px;
+    font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.btnPrimary {
+    composes: btn;
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 215, 0, 0.6);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0);
+    position: relative;
+    overflow: hidden;
+}
+
+.btnPrimary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btnPrimary:hover::before {
+    left: 100%;
+}
+
+.btnPrimary:hover {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 1);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.btnSecondary {
+    composes: btn;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btnSecondary:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* -------------------------------------------
+   Scroll Indicator
+   ------------------------------------------- */
+.scrollIndicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    animation: fade-in 2s 4s forwards ease-out;
+    z-index: 10;
+}
+
+.scrollIndicator span {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.scrollLine {
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.scrollLine::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: #e6dfc8;
+    animation: scroll-drop 2s infinite ease-in-out;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+    .ctaContainer {
+        flex-direction: column;
+        width: 80%;
+    }
+
+    .btn {
+        text-align: center;
+    }
+}
