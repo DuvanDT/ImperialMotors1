@@ -23,20 +23,27 @@ jobs:
           node-version: 18
 
       - name: Install deps
+        working-directory: ./frontend
         run: npm install
 
       - name: Build
+        working-directory: ./frontend
         run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./frontend/out
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
 
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: Deploy to Pages
+        id: deployment
         uses: actions/deploy-pages@v4
