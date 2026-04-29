@@ -5,7 +5,6 @@ const nextConfig = {
     unoptimized: true,
   },
   basePath: '/ImperialMotors1',
-  assetPrefix: '/ImperialMotors1'
 };
 
 export default nextConfig
