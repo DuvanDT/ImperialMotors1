@@ -5,14 +5,6 @@ import styles from './HeroSection.module.css';
 export default function HeroSection() {
     return (
         <section className={styles.heroSection}>
-            {/* Video Background Layer */}
-            <video className={styles.heroVideo} autoPlay loop muted playsInline>
-                <source
-                    src="/ImperialMotors1/videos/Imperial_motors_promotional_video_921275a997 (online-video-cutter.com) (1).mp4"
-                    type="video/mp4"
-                />
-                Your browser does not support the video tag.
-            </video>
 
             {/* Deep Black Overlay */}
             <div className={styles.videoOverlay}></div>
